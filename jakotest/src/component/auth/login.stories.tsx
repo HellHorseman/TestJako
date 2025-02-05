@@ -26,7 +26,7 @@ const Template: StoryFn = (args) => <Login {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    background: '#f0f0f0',
+    background: '#ffffff',
     buttonColor: 'primary',
     showRememberMe: true,
 };
