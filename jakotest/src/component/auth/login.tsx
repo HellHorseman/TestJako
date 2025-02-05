@@ -3,7 +3,17 @@
 import React, {useState} from "react";
 import {Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typography} from "@mui/material";
 
-const Login = () => {
+interface LoginProps {
+    background?: string;
+    buttonColor?: "primary" | "secondary" | "success";
+    showRememberMe?: boolean;
+}
+
+const Login: React.FC<LoginProps> = ({
+                                         background = "#ffffff",
+                                         buttonColor = "primary",
+                                         showRememberMe = true,
+                                     }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -34,14 +44,14 @@ const Login = () => {
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
         if (emailError) {
-            setEmailError('');  // Убираем ошибку, как только начинается ввод
+            setEmailError('');
         }
     };
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
         if (passwordError) {
-            setPasswordError('');  // Убираем ошибку, как только начинается ввод
+            setPasswordError('');
         }
     };
 
@@ -53,7 +63,7 @@ const Login = () => {
             justifyContent: 'center',
             maxHeight: '100%',
             maxWidth: '100%',
-            backgroundColor: 'white',
+            backgroundColor: background,
         }}>
             <Box sx={{
                 display: 'flex',
@@ -120,11 +130,13 @@ const Login = () => {
                                 justifyContent: 'space-between',
                                 alignItems: 'center'
                             }}>
+                                {showRememberMe && (
                                 <FormControlLabel
                                     control={<Checkbox/>}
                                     label="Запомнить меня"
                                     sx={{marginTop: 1}}
                                 />
+                                    )}
                                 <Typography
                                     variant="body2"
                                     color="primary"
@@ -136,7 +148,7 @@ const Login = () => {
                             </Box>
                             <Button
                                 variant="contained"
-                                color="primary"
+                                color= {buttonColor}
                                 fullWidth
                                 sx={{marginTop: 2}}
                                 onClick={handleLogin}

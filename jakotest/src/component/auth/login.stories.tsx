@@ -4,11 +4,50 @@ import {Meta, StoryFn} from "@storybook/react";
 
 
 export default {
-    title: 'Pages/Login',
+    title: 'Components/Login',
     component: Login,
+    argTypes: {
+        background: {
+            control: 'color',
+        },
+        buttonColor: {
+            control: {
+                type: 'select',
+                options: ['primary', 'secondary'],
+            },
+        },
+        showRememberMe: {
+            control: 'boolean',
+        },
+    },
 } as Meta;
 
 const Template: StoryFn = (args) => <Login {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+    background: '#f0f0f0',
+    buttonColor: 'primary',
+    showRememberMe: true,
+};
+
+export const DarkBackground = Template.bind({});
+DarkBackground.args = {
+    background: '#333',
+    buttonColor: 'secondary',
+    showRememberMe: true,
+};
+
+export const WithoutRememberMe = Template.bind({});
+WithoutRememberMe.args = {
+    background: '#ffffff',
+    buttonColor: 'primary',
+    showRememberMe: false,
+};
+
+export const GreenButton = Template.bind({});
+GreenButton.args = {
+    background: '#ffffff',
+    buttonColor: 'success',
+    showRememberMe: true,
+};

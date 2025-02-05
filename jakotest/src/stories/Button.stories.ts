@@ -55,6 +55,7 @@ export const Small: Story = {
 export const Test1: Story = {
   args: {
     primary: false,
+    backgroundColor: 'green',
     label: "Button"
   }
 };
